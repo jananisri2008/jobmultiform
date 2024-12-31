@@ -1,0 +1,13 @@
+.final-stage {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    width: 120%;
+    height: fit-content;
+  }
+  .step-indicator {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  

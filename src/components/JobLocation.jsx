@@ -34,6 +34,7 @@ const JobLocation = ({ formData, nextStep, handleForm }) => {
         <span className="step">2 Job position</span>
         <span className="step">3 Personal details</span>
       </div>
+      
       <div className="form-group">
         <div className='input-container'>
           <input
@@ -56,4 +57,3 @@ const JobLocation = ({ formData, nextStep, handleForm }) => {
 };
 
 export default JobLocation;
-

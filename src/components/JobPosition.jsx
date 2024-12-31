@@ -3,7 +3,8 @@ import '../styles/JobPositions.css';
 
 const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => {
   const { jobPosition } = formData;
-  const [selectJobId, setSelectJobId] = useState(jobPosition || '');
+  // const [selectJobId, setSelectJobId] = useState(jobPosition || '');
+  const[selectJobTitle, setSelectJobTitle]=useState(jobPosition || '');
   const[errorMessage,setErrorMessage]=useState('');
 
   const jobPositions = [
@@ -33,14 +34,17 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
     },
   ];
   
-  const handleSelect = (id) => {
-    setSelectJobId(id);
+  const handleSelect = (id,title) => {
+    // setSelectJobId(id);
+    setSelectJobTitle(title);
     setErrorMessage('');
-    handleFormDataChange({ jobPosition: id });
+    // handleFormDataChange({ jobPosition: id });
+    handleFormDataChange({jobPosition:title});
   };
 
   const handleNext=()=>{
-    if(!selectJobId){
+    // if(!selectJobId){
+    if(!selectJobTitle){
       setErrorMessage('Please select a job position');
     } else{
       nextStep();
@@ -48,14 +52,15 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
   };
 
   const handleInputChange=(e)=>{
-    setSelectJobId(e.target.value);
+    // setSelectJobId(e.target.value);
+    setSelectJobTitle(e.target.value);
     setErrorMessage('');
   };
 
   const JobPositionCard = ({ job, onSelect, selected }) => (
     <div
       className={`job-card ${selected ? 'selected' : ''}`}
-      onClick={() => onSelect(job.id)}
+      onClick={() => onSelect(job.id,job.title)}
     >
       <h3>{job.title}</h3>
       <p>{job.description}</p>
@@ -77,7 +82,8 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
           type='text'
           id='positions'
           placeholder='Roles: job title, position'
-          value={selectJobId}
+          // value={selectJobId}
+          value={selectJobTitle}
           onChange={handleInputChange}/>
         </div>
       </div>
@@ -93,7 +99,8 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
             key={job.id}
             job={job}
             onSelect={handleSelect}
-            selected={job.id === selectJobId}
+            // selected={job.id === selectJobId}
+            selected={job.title===selectJobTitle}
           />
         ))}
       </div>
@@ -107,3 +114,4 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
 };
 
 export default JobPosition;
+
