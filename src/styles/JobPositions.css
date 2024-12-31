@@ -1,6 +1,7 @@
   /* Container for the job selector */
 .job-selector {
     text-align: center;
+    background-color: white;
   }
   
   /* Styles for the job list container */
@@ -43,4 +44,42 @@
     color: #333;
   }
   
+  .job-selector{
+    padding: 20px;
+    background-color:white;
+    border-radius: 8px;
+    width: 80%;
+    height:fit-content;
+  }
+  .btn-prev{
+    background-color:cornflowerblue;
+   
+  }
+  .btn-next{
+    margin-left: 80%;
+    background-color: greenyellow;
+    
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .input-container {
+    position: relative;
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+  }
+  input:focus {
+    outline: none;
+    border-color: #5a29e4;
+  }
   

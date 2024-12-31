@@ -4,6 +4,7 @@ import '../styles/JobPositions.css';
 const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => {
   const { jobPosition } = formData;
   const [selectJobId, setSelectJobId] = useState(jobPosition || '');
+  const[errorMessage,setErrorMessage]=useState('');
 
   const jobPositions = [
     {
@@ -34,7 +35,21 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
   
   const handleSelect = (id) => {
     setSelectJobId(id);
+    setErrorMessage('');
     handleFormDataChange({ jobPosition: id });
+  };
+
+  const handleNext=()=>{
+    if(!selectJobId){
+      setErrorMessage('Please select a job position');
+    } else{
+      nextStep();
+    }
+  };
+
+  const handleInputChange=(e)=>{
+    setSelectJobId(e.target.value);
+    setErrorMessage('');
   };
 
   const JobPositionCard = ({ job, onSelect, selected }) => (
@@ -56,6 +71,18 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
         <span className="step">3 Personal details</span>
       </div>
 
+      <div className='form-group'>
+        <div className='input-container'>
+          <input
+          type='text'
+          id='positions'
+          placeholder='Roles: job title, position'
+          value={selectJobId}
+          onChange={handleInputChange}/>
+        </div>
+      </div>
+      {errorMessage && <div className='error-message'>{errorMessage}</div>}
+
       {/* <h2>Select a Job Position</h2> */}
       <div className="suggestion-title">
         <span className="step">SUGGESTIONS</span>
@@ -70,9 +97,10 @@ const JobPosition = ({ formData, handleFormDataChange, nextStep, prevStep }) => 
           />
         ))}
       </div>
-      <div className="buttons">
-        <button className="button-prev" onClick={prevStep}>Back</button>
-        <button className="button-next" onClick={nextStep}>Next</button>
+
+           <div className="buttons">
+        <button className="btn-prev" onClick={prevStep}>Back</button>
+        <button className="btn-next" onClick={handleNext}>Next</button>
       </div>
     </div>
   );
