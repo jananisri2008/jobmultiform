@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/Success.css';
-import successImage from '../assets/Thumb.jpg'; // Import image from the assets folder
+import successImage from '../assets/thumb.jpg'; // Import image from the assets folder
 
 function Success({ formData }) {
   const [imageSrc, setImageSrc] = useState(successImage); // Set default image to imported one
@@ -18,7 +18,7 @@ function Success({ formData }) {
         </div>
         {/* Display the image from assets */}
         <div className="image-container">
-          <img src={imageSrc} alt="Thumb" className="uploaded-image" />
+          <img src={imageSrc} alt="thumb" className="uploaded-image" />
         </div>
         <p>We've received your application!</p>
         <p>We will process it and reach out to you in a days.</p>
