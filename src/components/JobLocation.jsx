@@ -3,12 +3,12 @@ import '../styles/JobLocation.css';
 import Suggestion from './Suggestion';
 
 const JobLocation = ({ formData, nextStep, handleForm }) => {
-  const [location, setLocation] = useState(formData.locations || '');
+  const [location, setLocation] = useState(formData.joblocation || '');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleNext = () => {
     if (location) {
-      handleForm({ locations: location });
+      handleForm({ joblocation: location });
       nextStep();
     } else {
       setErrorMessage('Please choose the location.');

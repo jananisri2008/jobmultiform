@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import '../styles/PersonalDetail.css';
 
 function PersonalDetail({ formData, handleForm, nextStep, prevStep, currentStage }) {
-  const { personalDetail, location, jobPosition } = formData;
+  const { personalDetail, joblocation, jobPosition } = formData;
   const [personal, setPersonal] = useState(personalDetail || ''); // Personal details (name)
   const [phone, setPhone] = useState(''); // Phone number
-  const [locationInput, setLocationInput] = useState(location || ''); // Job location
+  const [joblocationInput, setLocationInput] = useState(joblocation || ''); // Job location
   const [jobPositionInput, setJobPositionInput] = useState(jobPosition || ''); // Job position
   const [errorMessage, setErrorMessage] = useState(''); // Error message for validation
 
   // Update locationInput and jobPositionInput when the values from formData change
   useEffect(() => {
-    setLocationInput(location); 
+    setLocationInput(joblocation); 
     setJobPositionInput(jobPosition);
-  }, [location, jobPosition]);
+  }, [joblocation, jobPosition]);
 
   const handleNext = () => {
     // Validate if all fields are filled
-    if (personal && phone && jobPositionInput) { // Only validate job position
-      handleForm({ personalDetail: personal, location: locationInput, jobPosition: jobPositionInput });
+    if (personal && phone && joblocationInput && jobPositionInput) { // Only validate job position
+      handleForm({ personalDetail: personal, joblocation: joblocationInput, jobPosition: jobPositionInput });
       nextStep(); // Go to the next step
     } else {
       setErrorMessage('Please fill all the fields'); // Show error if validation fails
@@ -49,7 +49,7 @@ function PersonalDetail({ formData, handleForm, nextStep, prevStep, currentStage
           <input
             type="text"
             placeholder="Location"
-            value={locationInput} // Pre-filled with location
+            value={joblocationInput} // Pre-filled with location
             onChange={(e) => setLocationInput(e.target.value)} // Update location
           />
         )}
