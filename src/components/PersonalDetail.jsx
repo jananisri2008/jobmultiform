@@ -1,85 +1,76 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PersonalDetail.css';
 
-function PersonalDetail({ formData, handleForm, nextStep, prevStep }) {
-  const { personalDetail,location,jobPosition } = formData;
-  //separate state
-  const [personal, setPersonal] = useState(personalDetail || ''); 
-  const [phone, setPhone] = useState(''); 
-  const [locationInput, setLocationInput] = useState(location || ''); 
-  const [jobPositionInput, setJobPositionInput] = useState(jobPosition || ''); 
-  const [errorMessage, setErrorMessage] = useState('');
+function PersonalDetail({ formData, handleForm, nextStep, prevStep, currentStage }) {
+  const { personalDetail, location, jobPosition } = formData;
+  const [personal, setPersonal] = useState(personalDetail || ''); // Personal details (name)
+  const [phone, setPhone] = useState(''); // Phone number
+  const [locationInput, setLocationInput] = useState(location || ''); // Job location
+  const [jobPositionInput, setJobPositionInput] = useState(jobPosition || ''); // Job position
+  const [errorMessage, setErrorMessage] = useState(''); // Error message for validation
+
+  // Update locationInput and jobPositionInput when the values from formData change
+  useEffect(() => {
+    setLocationInput(location); 
+    setJobPositionInput(jobPosition);
+  }, [location, jobPosition]);
 
   const handleNext = () => {
-    if (personal && phone && locationInput && jobPositionInput) { 
-        // Check 
-      handleForm({ personalDetail: personal, location:locationInput, jobPosition:jobPositionInput }); 
-      nextStep();
+    // Validate if all fields are filled
+    if (personal && phone && jobPositionInput) { // Only validate job position
+      handleForm({ personalDetail: personal, location: locationInput, jobPosition: jobPositionInput });
+      nextStep(); // Go to the next step
     } else {
-      setErrorMessage('Please fill all the fields');
+      setErrorMessage('Please fill all the fields'); // Show error if validation fails
     }
   };
 
-  const handleInputChange = (e) => {
-    setPersonal(e.target.value);
-    setErrorMessage(''); 
-  };
-
   return (
-    <div className='personal-detail'>
-      <div className="step-indicator">
-        <span className="step">1 Job location</span>
-        <span className="step">2 Job position</span>
-        <span className="step active">3 Personal details</span>
+    <div className="personal-detail">
+      <div className="input-group">
+        {/* Personal Details (Name) */}
+        <input
+          type="text"
+          placeholder="Name"
+          value={personal}
+          onChange={(e) => setPersonal(e.target.value)} // Update personal details
+        />
+        
+        {/* Phone Number */}
+        <input
+          type="text"
+          placeholder="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)} // Update phone number
+        />
+
+        {/* Conditionally render Location input based on currentStage */}
+        {currentStage !== 3 && (
+          <input
+            type="text"
+            placeholder="Location"
+            value={locationInput} // Pre-filled with location
+            onChange={(e) => setLocationInput(e.target.value)} // Update location
+          />
+        )}
+
+        {/* Job Position Input (Always visible) */}
+        <input
+          type="text"
+          placeholder="Job Position"
+          value={jobPositionInput} // Pre-filled with job position
+          onChange={(e) => setJobPositionInput(e.target.value)} // Update job position
+        />
       </div>
 
-      <div className='form-group'>
-      <div className='input-container'>
-          <input
-            type='text'
-            id='location'
-            placeholder='Location:'
-            value={locationInput}
-            // onChange={handleInputChange}
-            onChange={(e)=>handleInputChange(e,setLocationInput)}
-          />
-        </div>
-        <div className='input-container'>
-          <input
-            type='text'
-            id='jobPosition'
-            placeholder='Roles:'
-            value={jobPositionInput}
-            // onChange={handleInputChange}
-            onChange={(e)=>handleInputChange(e,setJobPositionInput)}
-          />
-        </div>
-        <div className='input-container'>
-          <input
-            type='text'
-            id='personalDetail'
-            placeholder='Name:'
-            value={personal}
-            // onChange={handleInputChange}
-            onChange={(e)=>handleInputChange(e,setPersonal)}
-          />
-        </div>
+      {/* Display error message if fields are incomplete */}
+      {errorMessage && <div className="error-message">{errorMessage}</div>}
 
-        <div className='input-container'>
-          <input
-            type='text'
-            id='phone'
-            placeholder='Phone:'
-            value={phone}
-            onChange={(e)=>handleInputChange(e,setPhone)}
-          />
-        </div>
-        {errorMessage && <div className='error-message'>{errorMessage}</div>}
-      </div>
 
+      {/* Navigation buttons */}
       <div className="buttons">
-        <button className="btn-prev" onClick={prevStep}>Back</button>
-        <button className="btn-next" onClick={handleNext}>Next</button>
+        <button  className='btn-prev' onClick={prevStep}>Back</button> {/* Previous button to go back */}
+        <button className='btn-next' onClick={handleNext}>Next</button> {/* Next button to proceed */}
       </div>
     </div>
   );

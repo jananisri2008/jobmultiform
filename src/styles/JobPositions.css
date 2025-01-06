@@ -1,80 +1,86 @@
-  .job-selector {
-    text-align: center;
-    background-color: white;
-  }
-  
-  .job-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 20px;
-    margin: 20px;
-  }
-  
-  .job-card {
-    /* flex:45%;  */
-    max-width: 20%;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 1px;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-    cursor: pointer;
-    text-align: left;
-    /* transition: all 0.3s ease; */
-  }
-  
-  .job-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .job-card.selected {
-    border-color: #007bff;
-    background-color: #f0f8ff;
-  }
-  
-  /* Style for the rate */
-  .rate {
-    font-weight: bold;
-    color: #333;
-  }
-  
-  .job-selector{
-    padding: 20px;
-    background-color:white;
-    border-radius: 8px;
-    width: 80%;
-    height:fit-content;
-  }
-  .btn-prev{
-    background-color:cornflowerblue;
-   
-  }
-  .btn-next{
-    margin-left: 80%;
-    background-color: greenyellow;
-    
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
+.job-selector {
+  padding: 20px;
+}
 
-  .input-container {
-    position: relative;
-    width: 100%;
-  }
+.search-box {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
 
-  input {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-top: 5px;
-  }
-  input:focus {
-    outline: none;
-    border-color: #5a29e4;
-  }
-  
+.search-box input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.job-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create two columns for the first row */
+  grid-gap: 20px; /* Space between cards */
+  padding: 10px 0;
+}
+
+.job-card {
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.job-card:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.05);
+}
+
+.job-card.selected {
+  background-color:#f0f0f0;
+  color: black;
+}
+
+.job-card h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.job-card p {
+  margin: 5px 0;
+}
+
+.rate {
+  color:black;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn-prev, .btn-next {
+  padding: 10px 20px;
+  border: none;
+  background-color: greenyellow;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-prev:hover, .btn-next:hover {
+  opacity: 0.8;
+}
+
+.btn-prev:disabled, .btn-next:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}

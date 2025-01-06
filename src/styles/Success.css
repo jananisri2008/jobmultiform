@@ -1,4 +1,4 @@
-.final-stage {
+/* .final-stage {
     padding: 20px;
     background-color: white;
     border-radius: 8px;
@@ -9,5 +9,55 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+  }
+   */
+
+   .final-stage {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .step-indicator {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .step {
+    margin: 0 10px;
+    font-size: 14px;
+  }
+  
+  .step.active {
+    font-weight: bold;
+  }
+  
+  .success-message {
+    margin-top: 30px;
+  }
+  
+  .success-message h2 {
+    color: green;
+    font-size: 24px;
+  }
+  
+  .form-summary {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  .form-summary p {
+    margin: 5px 0;
+  }
+  
+  .image-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .uploaded-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
   }
   

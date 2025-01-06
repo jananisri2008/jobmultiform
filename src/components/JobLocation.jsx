@@ -3,10 +3,8 @@ import '../styles/JobLocation.css';
 import Suggestion from './Suggestion';
 
 const JobLocation = ({ formData, nextStep, handleForm }) => {
-  const { locations } = formData;
-  const [location, setLocation] = useState(locations || '');
-  //error message
-  const[errorMessage,setErrorMessage]=useState('');
+  const [location, setLocation] = useState(formData.locations || '');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleNext = () => {
     if (location) {
@@ -22,36 +20,28 @@ const JobLocation = ({ formData, nextStep, handleForm }) => {
     setErrorMessage('');
   };
 
-  const handleSuggestionClick = (suggestions) => {
-    setLocation(suggestions);
+  const handleSuggestionClick = (suggestion) => {
+    setLocation(suggestion);
     setErrorMessage('');
   };
 
   return (
     <div className="location-step">
-      <div className="step-indicator">
-        <span className="step active">1 Job location</span>
-        <span className="step">2 Job position</span>
-        <span className="step">3 Personal details</span>
-      </div>
-      
+  
       <div className="form-group">
-        <div className='input-container'>
-          <input
-            type="text"
-            id="locations"
-            placeholder="Location: city, area..."
-            value={location}
-            onChange={handleInputChange}
-          />
-        </div>
-        {errorMessage && <div className='error-message'>{errorMessage}</div>}
+        <input
+          type="text"
+          placeholder="Location: city, area..."
+          value={location}
+          onChange={handleInputChange}
+        />
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
       </div>
-      <div className="suggestion-title">
-        <span className="step">SUGGESTIONS</span>
-      </div>
+      <h6 className='sub-title'>SUGGESTIONS</h6>
       <Suggestion onSuggestionClick={handleSuggestionClick} />
-      <button className="button-next" onClick={handleNext}>Next</button>
+      <div className='buttons'>
+      <button className='btn-next' onClick={handleNext}>Next</button>
+      </div>
     </div>
   );
 };
