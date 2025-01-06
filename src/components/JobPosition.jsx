@@ -40,10 +40,19 @@ const JobPosition = ({ formData, handleForm, nextStep, prevStep }) => {
         {jobPositions.map((job) => (
           <div
             key={job.id}
-            className={`job-card ${selectedJob === job.title ? 'selected' : ''}`}
-            onClick={() => handleSelectJob(job)} // Set the job as selected when clicked
-          >
-            <h3>{job.title}</h3>
+            // className={`job-card ${selectedJob === job.title ? 'selected' : ''}`}
+            className='job-radio'>
+              <label className='job-radio-label'>
+                <input
+                type='radio'
+                name='jobPosition'
+                value={job.title}
+                checked={selectedJob===job.title}
+                onChange={()=>handleSelectJob(job)}
+                />
+                <span className='job-title'>{job.title}</span>
+              </label>
+            {/* <h3>{job.title}</h3> */}
             <p>{job.description}</p>
             <p className="rate">{job.rate}</p>
           </div>

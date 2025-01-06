@@ -54,6 +54,21 @@ input {
   margin-top: 5px;
 }
 
+.file-upload-area{
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  border: 3px dashed #ddd;
+  border-radius: 1px;
+  margin-top: 10px;
+}
+
+.file-upload-area p{
+  text-align: center;
+  text-decoration: underline;
+  font-size: larger;
+  font-weight: bold;
+}
 .buttons {
   display: flex;
   justify-content: right;
